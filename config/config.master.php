@@ -137,6 +137,12 @@ if (isset($config))
 	//     )
 	// );
 
+	/**
+	 * XSS Filtering
+	 *
+	 * Add more member groups by group ID to exclude them from the XSS filtering
+	 */
+	$config['xss_clean_member_group_exception'] = "1";
 
 	/**
 	 * Template settings
