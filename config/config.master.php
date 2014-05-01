@@ -172,12 +172,12 @@ if (isset($config))
 	$env_config['allow_extensions']     = 'y';
 	$env_config['email_debug']          = (ENV_DEBUG) ? 'y' : 'n' ;
 	// If we're not in production show the profile on the front-end but not in the CP
-	$env_config['show_profiler']        = ( ! ENV_DEBUG OR (isset($_GET['D']) && $_GET['D'] == 'cp')) ? 'n' : 'y' ;
+	$env_config['show_profiler']        = (isset($_GET['profile']) ? 'y' : 'n');//( ! ENV_DEBUG OR (isset($_GET['D']) && $_GET['D'] == 'cp')) ? 'n' : 'y' ;
 	// Show template debugging if we're not in production
-	$env_config['template_debugging']   = (ENV_DEBUG) ? 'y' : 'n' ;
+	$env_config['template_debugging']   = (isset($_GET['debug']) ? 'y' : 'n');//(ENV_DEBUG) ? 'y' : 'n' ;
 	/**
 	 * Set debug to '2' if we're in dev mode, otherwise just '1'
-	 * 
+	 *
 	 * 0: no PHP/SQL errors shown
 	 * 1: Errors shown to Super Admins
 	 * 2: Errors shown to everyone
