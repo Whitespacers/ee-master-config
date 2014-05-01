@@ -156,8 +156,9 @@ if (isset($config))
 	 */
 	$env_config['save_tmpl_files']           = 'y';
 	// $env_config['save_tmpl_files']           = (ENV == 'prod') ? 'n' : 'y';
-	$env_config['tmpl_file_basepath']        = $base_path . '/../templates';
-	$env_config['hidden_template_indicator'] = '_'; 
+	$env_config['tmpl_file_basepath']        = $base_path . '/system/expressionengine/templates';
+	$env_config['hidden_template_indicator'] = '_';
+	$env_config['enable_emoticons']          = 'n';
 
 
 
