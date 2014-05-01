@@ -2,26 +2,26 @@
 
 /**
  * Focus Lab, LLC Master Config
- * 
+ *
  * This is the master config file for our ExpressionEngine sites
  * The settings will contain database credentials and numerous "config overrides"
  * used throughout the site. This file is used as first point of configuration
  * but there are environment-specific files as well. The idea is that the environment
  * config files contain config overrides that are specific to a single environment.
- * 
+ *
  * Some config settings are used in multiple (but not all) environments. You will
  * see the use of conditionals around the ENV constant in this file. This constant is
  * defined in ./config/config.env.php
- * 
+ *
  * All config files are stored in the ./config/ directory and this master file is "required"
  * in system/expressionengine/config/config.php and system/expressionengine/config/database.php
- * 
+ *
  * require $_SERVER['DOCUMENT_ROOT'] . '/../config/config.master.php';
- * 
+ *
  * This config setup is a combination of inspiration from Matt Weinberg and Leevi Graham
  * @link       http://eeinsider.com/articles/multi-server-setup-for-ee-2/
  * @link       http://ee-garage.com/nsm-config-bootstrap
- * 
+ *
  * @package    Focus Lab Master Config
  * @version    1.1.1
  * @author     Focus Lab, LLC <dev@focuslabllc.com>
@@ -33,7 +33,7 @@
 // already been loaded in index.php or admin.php
 if ( ! defined('ENV'))
 {
-	require 'config.env.php'; 
+	require 'config.env.php';
 }
 
 
@@ -43,7 +43,7 @@ $env_db = $env_config = $env_global = $master_global = array();
 
 /**
  * Database override magic
- * 
+ *
  * If this equates to TRUE then we're in the database.php file
  * We don't want these settings bothered with in our config.php file
  */
@@ -52,20 +52,20 @@ if (isset($db['expressionengine']))
 	/**
 	 * Load our environment-specific config file
 	 * which contains our database credentials
-	 * 
+	 *
 	 * @see config/config.local.php
 	 * @see config/config.dev.php
 	 * @see config/config.stage.php
 	 * @see config/config.prod.php
 	 */
 	require 'config.' . ENV . '.php';
-	
+
 	// Dynamically set the cache path (Shouldn't this be done by default? Who moves the cache path?)
 	$env_db['cachedir'] = APPPATH . 'cache/db_cache/';
-	
+
 	// Merge our database setting arrays
 	$db['expressionengine'] = array_merge($db['expressionengine'], $env_db);
-	
+
 	// No need to have this variable accessible for the rest of the app
 	unset($env_db);
 }
@@ -75,7 +75,7 @@ if (isset($db['expressionengine']))
 
 /**
  * Config override magic
- * 
+ *
  * If this equates to TRUE then we're in the config.php file
  * We don't want these settings bothered with in our database.php file
  */
@@ -84,7 +84,7 @@ if (isset($config))
 
 	/**
 	 * Dynamic path settings
-	 * 
+	 *
 	 * Make it easy to run the site in multiple environments and not have to switch up
 	 * path settings in the database after each migration
 	 * As inspired by Matt Weinberg: http://eeinsider.com/articles/multi-server-setup-for-ee-2/
@@ -121,7 +121,7 @@ if (isset($config))
 
 	/**
 	 * Custom upload directory paths
-	 * 
+	 *
 	 * The array keys must match the ID from exp_upload_prefs
 	 */
 	// $env_config['upload_preferences'] = array(
@@ -146,11 +146,11 @@ if (isset($config))
 
 	/**
 	 * Template settings
-	 * 
+	 *
 	 * Working locally we want to reference our template files.
 	 * In staging and production we do not use flat files (for ever-so-slightly better performance)
 	 * This approach requires that we synchronize templates after each deployment of template changes
-	 * 
+	 *
 	 * For the distributed Focus Lab, LLC Master Config file this is commented out
 	 * You can enable this "feature" by uncommenting the second 'save_tmpl_files' line
 	 */
@@ -164,7 +164,7 @@ if (isset($config))
 
 	/**
 	 * Debugging settings
-	 * 
+	 *
 	 * These settings are helpful to have in one place
 	 * for debugging purposes
 	 */
@@ -188,7 +188,7 @@ if (isset($config))
 
 	/**
 	 * Tracking & Performance settings
-	 * 
+	 *
 	 * These settings may impact what happens on certain page loads
 	 * and turning them off could help with performance in general
 	 */
@@ -208,7 +208,7 @@ if (isset($config))
 	/**
 	 * 3rd Party Add-on config items as needed
 	 */
-	
+
 
 
 
@@ -224,6 +224,8 @@ if (isset($config))
 	 */
 	$env_config['new_version_check']        = 'n'; // no slowing my CP homepage down with this
 	$env_config['daylight_savings']         = ((bool) date('I')) ? 'y' : 'n'; // Autodetect DST
+	$env_config['default_site_timezone']	= 'Europe/London';
+	$env_config['time_format']           	= 'eu';
 	$env_config['use_category_name']        = 'y';
 	$env_config['reserved_category_word']   = 'category';
 	$env_config['word_separator']           = 'dash'; // dash|underscore
@@ -234,7 +236,7 @@ if (isset($config))
 	/**
 	 * Load our environment-specific config file
 	 * May contain override values from similar above settings
-	 * 
+	 *
 	 * @see config/config.local.php
 	 * @see config/config.dev.php
 	 * @see config/config.stage.php
@@ -247,7 +249,7 @@ if (isset($config))
 
 	/**
 	 * Setup our template-level global variables
-	 * 
+	 *
 	 * As inspired by NSM Bootstrap Config
 	 * @see http://ee-garage.com/nsm-config-bootstrap
 	 */
@@ -256,7 +258,7 @@ if (isset($config))
 	{
 		$assign_to_config['global_vars'] = array();
 	}
-	
+
 	// Start our array with environment variables. This gives us {global:env} and {global:env_full} tags for our templates.
 	$master_global = array(
 		'global:env'      => ENV,
@@ -267,17 +269,17 @@ if (isset($config))
 
 	/**
 	 * Merge arrays to form final datasets
-	 * 
+	 *
 	 * We've created our base config and global key->value stores
 	 * We've also included the environment-specific arrays now
 	 * Here we'll merge the arrays to create our final array dataset which
 	 * respects "most recent data" first if any keys are duplicated
-	 * 
+	 *
 	 * This is how our environment settings are "king" over any defaults
 	 */
 	$assign_to_config['global_vars'] = array_merge($assign_to_config['global_vars'], $master_global, $env_global); // global var arrays
 	$config = array_merge($config, $env_config); // config setting arrays
-	
+
 }
 // End if (isset($config)) {}
 
