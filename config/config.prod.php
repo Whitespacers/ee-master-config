@@ -2,15 +2,16 @@
 
 /**
  * Production config overrides & db credentials
- * 
+ *
  * Our database credentials and any environment-specific overrides
- * 
+ *
  * @package    Focus Lab Master Config
  * @version    1.1.1
  * @author     Focus Lab, LLC <dev@focuslabllc.com>
  */
 
-$env_db['hostname'] = 'localhost';
+// DB writer IP address for castor/pollux - use 'localhost' for other servers
+$env_db['hostname'] = '172.22.10.200';
 $env_db['username'] = '';
 $env_db['password'] = '';
 $env_db['database'] = '';
