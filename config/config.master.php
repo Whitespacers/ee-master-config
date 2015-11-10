@@ -122,20 +122,22 @@ if (isset($config))
 	/**
 	 * Custom upload directory paths
 	 *
-	 * The array keys must match the ID from exp_upload_prefs
+	 * The array keys must match the ID from exp_upload_prefs.
+	 * Please configure these paths when adding them to the upload preferences admin.
+	 * NOTE: If using MSM, this section may be commented out for simplicity.
 	 */
-	// $env_config['upload_preferences'] = array(
-	//     1 => array(
-	//         'name'        => 'Default Uploads',
-	//         'server_path' => $images_path . '/uploads',
-	//         'url'         => $images_url  . '/uploads/'
-	//     ),
-	//     2 => array(
-	//         'name'        => 'Second Folder',
-	//         'server_path' => $images_path . '/another_one',
-	//         'url'         => $images_url  . '/another_one/'
-	//     )
-	// );
+	$env_config['upload_preferences'] = array(
+	    1 => array(
+	        'name'        => 'Upload paths not configured!',
+	        'server_path' => $images_path . '/configure/this/path!/',
+	        'url'         => $images_url  . '/configure/this/path!/'
+	    )/*,
+	    2 => array(
+	        'name'        => 'Second Folder',
+	        'server_path' => $images_path . '/another_one',
+	        'url'         => $images_url  . '/another_one/'
+	    )*/
+	);
 
 	/**
 	 * XSS Filtering
