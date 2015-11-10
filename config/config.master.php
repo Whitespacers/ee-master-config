@@ -264,7 +264,8 @@ if (isset($config))
 	// Start our array with environment variables. This gives us {global:env} and {global:env_full} tags for our templates.
 	$master_global = array(
 		'global:env'      => ENV,
-		'global:env_full' => ENV_FULL
+		'global:env_full' => ENV_FULL,
+		'global:hostname' => strtolower($_SERVER['HTTP_HOST'])
 	);
 
 
